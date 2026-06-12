@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iglesia Nueva Vida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #1a2744; background: #fff; }
+
+    /* NAV */
+    nav {
+      background: rgba(26,39,68,0.97);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links li a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links li a:hover { color: #c9a84c; }
+    .nav-ofrenda {
+      background: #c9a84c;
+      color: #1a2744;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: opacity 0.2s;
+    }
+    .nav-ofrenda:hover { opacity: 0.85; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, #1a2744 0%, #253660 60%, #1a2744 100%);
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero svg.rays {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 620px; }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: #c9a84c;
+      font-weight: 500;
+      margin-bottom: 1.1rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 1.1rem;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+      font-weight: 300;
+    }
+    .hero-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #c9a84c;
+      color: #1a2744;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(201,168,76,0.45);
+      color: #c9a84c;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 13px 26px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: #c9a84c; }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: #c9a84c;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #1a2744;
+      margin-bottom: 0.85rem;
+      line-height: 1.22;
+    }
+    .section-body {
+      font-size: 15px;
+      color: #4a5568;
+      line-height: 1.85;
+      max-width: 560px;
+    }
+
+    /* QUIÉNES SOMOS */
+    #quienes { background: #f7f8fa; }
+    .quienes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .quienes-img {
+      border-radius: 10px;
+      background: #1a2744;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Replace the background with your church photo:
+       .quienes-img { background: url('foto-iglesia.jpg') center/cover; } */
+    .quienes-img-inner { position: relative; z-index: 1; text-align: center; }
+    .quienes-img-inner i { font-size: 40px; color: rgba(201,168,76,0.45); display: block; margin-bottom: 8px; }
+    .stat-row { display: flex; gap: 1.8rem; margin-top: 2rem; align-items: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #1a2744;
+      line-height: 1;
+    }
+    .stat-label { font-size: 11px; color: #7a8499; letter-spacing: 0.07em; margin-top: 3px; }
+    .stat-divider { width: 1px; background: #dde1ea; align-self: stretch; }
+
+    /* MINISTERIOS */
+    #ministerios { background: #fff; }
+    .min-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .min-card {
+      border: 0.5px solid #e2e6ef;
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .min-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(26,39,68,0.09); }
+    .min-img {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+    }
+    /* Replace with real ministry photos:
+       .min-img { background: url('foto-ministerio.jpg') center/cover; height: 140px; } */
+    .bg1 { background: #1a2744; }
+    .bg2 { background: #253660; }
+    .bg3 { background: #1d4060; }
+    .bg4 { background: #162238; }
+    .bg5 { background: #1f3a5c; }
+    .bg6 { background: #2a3d5c; }
+    .min-body { padding: 1rem 1.1rem 1.2rem; }
+    .min-name { font-size: 14px; font-weight: 600; color: #1a2744; margin-bottom: 5px; }
+    .min-desc { font-size: 12.5px; color: #6b7488; line-height: 1.65; }
+    .min-more {
+      font-size: 11px; color: #c9a84c; font-weight: 600;
+      margin-top: 8px; letter-spacing: 0.06em;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    /* REDES SOCIALES */
+    #redes { background: #1a2744; }
+    #redes .section-title { color: #fff; }
+    #redes .section-body { color: rgba(255,255,255,0.58); }
+    #redes .section-label { color: #c9a84c; }
+    .redes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .red-card {
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .red-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.1rem; }
+    .red-icon {
+      width: 40px; height: 40px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: #fff; font-weight: 700;
+    }
+    .ig { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .fb { background: #1877f2; }
+    .red-name { font-size: 15px; font-weight: 600; color: #fff; }
+    .red-handle { font-size: 12px; color: rgba(255,255,255,0.42); }
+    .red-preview {
+      background: rgba(255,255,255,0.04);
+      border-radius: 7px;
+      height: 130px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.22); font-size: 13px; letter-spacing: 0.04em;
+      border: 0.5px dashed rgba(255,255,255,0.14);
+    }
+    /* Replace .red-preview content with real embed:
+       <iframe src="https://www.facebook.com/plugins/video.php?..." ...></iframe> */
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #e53e3e; color: #fff;
+      font-size: 10px; font-weight: 700;
+      padding: 4px 10px; border-radius: 3px;
+      letter-spacing: 0.1em; margin-top: 12px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; background: #fff; border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+    /* OFRENDAR CTA */
+    .ofrenda-cta {
+      background: #f7f8fa;
+      text-align: center;
+      padding: 5rem 2.5rem;
+      border-top: 1px solid #e2e6ef;
+    }
+    .ofrenda-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 600; color: #1a2744; margin-bottom: 0.6rem;
+    }
+    .ofrenda-cta p { font-size: 14px; color: #6b7488; margin-bottom: 2rem; }
+    .btn-ofrenda {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #1a2744; color: #c9a84c;
+      font-size: 13px; font-weight: 600;
+      padding: 15px 36px; border-radius: 4px;
+      text-decoration: none; letter-spacing: 0.07em;
+      transition: opacity 0.2s;
+    }
+    .btn-ofrenda:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      background: #0f1828;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 0.5rem;
+    }
+    .footer-text { font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: 0.07em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: 34px; }
+      .quienes-grid { grid-template-columns: 1fr; }
+      .min-grid { grid-template-columns: 1fr 1fr; }
+      .redes-grid { grid-template-columns: 1fr; }
+      .stat-row { gap: 1rem; }
+    }
+    @media (max-width: 460px) {
+      .min-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#" class="nav-logo">✦ Iglesia Nueva Vida</a>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#quienes">Quiénes somos</a></li>
+    <li><a href="#ministerios">Ministerios</a></li>
+    <li><a href="#redes">En vivo</a></li>
+  </ul>
+  <a href="#ofrendar" class="nav-ofrenda">OFRENDAR</a>
+  <div class="hamburger" onclick="alert('Menú móvil — conectar con JS')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="rays" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="hg" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.13"/>
+        <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="480" fill="url(#hg)"/>
+    <line x1="600" y1="180" x2="0"    y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.1"/>
+    <line x1="600" y1="180" x2="150"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.08"/>
+    <line x1="600" y1="180" x2="320"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.06"/>
+    <line x1="600" y1="180" x2="480"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.05"/>
+    <line x1="600" y1="180" x2="600"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.05"/>
+    <line x1="600" y1="180" x2="720"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.05"/>
+    <line x1="600" y1="180" x2="880"  y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.06"/>
+    <line x1="600" y1="180" x2="1050" y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.08"/>
+    <line x1="600" y1="180" x2="1200" y2="480" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.1"/>
+  </svg>
+  <div class="hero-content">
+    <p class="eyebrow">FORMOSA, ARGENTINA · DOMINGO 9:00 AM</p>
+    <h1 class="hero-title">Donde la fe<br>transforma vidas</h1>
+    <p class="hero-subtitle">Una comunidad de fe comprometida con el amor, la esperanza<br>y el propósito de Dios para cada persona.</p>
+    <div class="hero-btns">
+      <a href="#redes" class="btn-primary"><i class="ti ti-player-play"></i> VER EN VIVO</a>
+      <a href="#ofrendar" class="btn-ghost"><i class="ti ti-heart"></i> OFRENDAR</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="section" id="quienes">
+  <div class="section-inner">
+    <div class="quienes-grid">
+      <div>
+        <p class="section-label">QUIÉNES SOMOS</p>
+        <h2 class="section-title">Una familia unida en Cristo</h2>
+        <p class="section-body">
+          Somos una iglesia fundada en la fe y el amor. Nos reunimos para adorar, crecer
+          y servir a nuestra comunidad. Creemos que cada persona tiene un propósito
+          especial y estamos aquí para acompañarte en ese camino.
+        </p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">AÑOS DE MINISTERIO</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">8</div>
+            <div class="stat-label">MINISTERIOS ACTIVOS</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">FAMILIAS</div>
+          </div>
+        </div>
+      </div>
+      <!-- REEMPLAZAR con: <img src="foto-iglesia.jpg" alt="Iglesia" style="width:100%;height:280px;object-fit:cover;border-radius:10px;"> -->
+      <div class="quienes-img">
+        <div class="quienes-img-inner">
+          <i class="ti ti-photo"></i>
+          <span style="font-size:11px;letter-spacing:0.1em;">TU FOTO AQUÍ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTERIOS -->
+<section class="section" id="ministerios">
+  <div class="section-inner">
+    <p class="section-label">MINISTERIOS</p>
+    <h2 class="section-title">Encuentra tu lugar de servicio</h2>
+    <p class="section-body">Cada ministerio es una oportunidad de crecer, servir y conectar con otros creyentes.</p>
+
+    <div class="min-grid">
+
+      <a href="ministerios/alabanza.html" class="min-card">
+        <!-- REEMPLAZAR con: <div class="min-img" style="background:url('fotos/alabanza.jpg') center/cover;"></div> -->
+        <div class="min-img bg1"><i class="ti ti-music" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio de Alabanza</div>
+          <div class="min-desc">Lideramos la adoración congregacional con música que toca el corazón.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+      <a href="ministerios/jovenes.html" class="min-card">
+        <div class="min-img bg2"><i class="ti ti-users" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio de Jóvenes</div>
+          <div class="min-desc">Formando la próxima generación de líderes con propósito y fe.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+      <a href="ministerios/damas.html" class="min-card">
+        <div class="min-img bg3"><i class="ti ti-heart" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio de Damas</div>
+          <div class="min-desc">Un espacio de comunión, crecimiento y apoyo para las mujeres de la iglesia.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+      <a href="ministerios/infantil.html" class="min-card">
+        <div class="min-img bg4"><i class="ti ti-star" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio Infantil</div>
+          <div class="min-desc">Sembrando la fe en los niños de forma divertida y significativa.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+      <a href="ministerios/varones.html" class="min-card">
+        <div class="min-img bg5"><i class="ti ti-shield" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio de Varones</div>
+          <div class="min-desc">Fortaleciendo al hombre en su rol de esposo, padre y líder.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+      <a href="ministerios/misiones.html" class="min-card">
+        <div class="min-img bg6"><i class="ti ti-world" style="color:rgba(201,168,76,0.75);"></i></div>
+        <div class="min-body">
+          <div class="min-name">Ministerio de Misiones</div>
+          <div class="min-desc">Llevando el evangelio más allá de nuestra ciudad, al mundo entero.</div>
+          <div class="min-more">VER MÁS <i class="ti ti-arrow-right" style="font-size:11px;"></i></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES / EN VIVO -->
+<section class="section" id="redes">
+  <div class="section-inner">
+    <p class="section-label">SÍGUENOS</p>
+    <h2 class="section-title">Conéctate con nosotros</h2>
+    <p class="section-body">Mira nuestras transmisiones en vivo y mantente al día con todo lo que Dios está haciendo.</p>
+
+    <div class="redes-grid">
+      <div class="red-card">
+        <div class="red-header">
+          <div class="red-icon ig">📷</div>
+          <div>
+            <div class="red-name">Instagram</div>
+            <div class="red-handle">@iglesianuevavida</div>
+          </div>
+        </div>
+        <!--
+          REEMPLAZAR red-preview con el embed de Instagram Live o feed:
+          <iframe src="https://www.instagram.com/iglesianuevavida/embed" ...></iframe>
+        -->
+        <div class="red-preview">Feed de Instagram</div>
+        <div class="live-badge"><span class="live-dot"></span> EN VIVO AHORA</div>
+      </div>
+
+      <div class="red-card">
+        <div class="red-header">
+          <div class="red-icon fb" style="font-weight:700;font-size:22px;">f</div>
+          <div>
+            <div class="red-name">Facebook</div>
+            <div class="red-handle">Iglesia Nueva Vida</div>
+          </div>
+        </div>
+        <!--
+          REEMPLAZAR red-preview con el embed de Facebook Live:
+          <iframe src="https://www.facebook.com/plugins/video.php?href=..." ...></iframe>
+        -->
+        <div class="red-preview">Transmisión de Facebook</div>
+        <div class="live-badge"><span class="live-dot"></span> EN VIVO AHORA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFRENDAR -->
+<section class="ofrenda-cta" id="ofrendar">
+  <h2>Tu generosidad hace la diferencia</h2>
+  <p>Cada ofrenda apoya el crecimiento del reino de Dios y nuestra comunidad.</p>
+  <!-- REEMPLAZAR href con el link de tu plataforma de ofrendas (Mercado Pago, PayPal, etc.) -->
+  <a href="#" class="btn-ofrenda"><i class="ti ti-heart"></i> OFRENDAR EN LÍNEA</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">✦ Iglesia Nueva Vida</div>
+  <p class="footer-text">FORMOSA, ARGENTINA · © 2026 · TODOS LOS DERECHOS RESERVADOS</p>
+</footer>
+
+</body>
+</html>
